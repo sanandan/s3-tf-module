@@ -18,16 +18,16 @@
       "Principal": "*"
     },
     {
-      "Sid": "IPAllow",
-      "Effect": "Deny",
+      "Sid":"PolicyForAllowUploadWithACL",
+      "Effect":"Allow",
       "Principal": "*",
-      "Action": "s3:*",
+      "Action":"s3:PutObject",
       "Resource": [
-	       "arn:aws:s3:::${bucket_name}",
-         "arn:aws:s3:::${bucket_name}/*"
+        "arn:aws:s3:::${bucket_name}",
+        "arn:aws:s3:::${bucket_name}/*"
       ],
       "Condition": {
-	 "NotIpAddress": {"aws:SourceIp": "192.168.1.1/32"}
+        "StringEquals": {"s3:x-amz-acl":"bucket-owner-full-control"}
       }
     }
   ]

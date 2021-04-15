@@ -1,5 +1,5 @@
 locals {
-  bucket_name   = "demotestshiva42"
+  bucket_name   = "demotestshiva43"
   custom_policy = templatefile("${path.module}/policy/custom-bucket-policy.tpl", { bucket_name = local.bucket_name })
 }
 
