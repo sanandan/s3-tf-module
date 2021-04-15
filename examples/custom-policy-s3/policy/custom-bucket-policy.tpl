@@ -16,19 +16,6 @@
         }
       },
       "Principal": "*"
-    },
-    {
-      "Sid":"PolicyForAllowUploadWithACL",
-      "Effect":"Allow",
-      "Principal": "*",
-      "Action":"s3:PutObject",
-      "Resource": [
-        "arn:aws:s3:::${bucket_name}",
-        "arn:aws:s3:::${bucket_name}/*"
-      ],
-      "Condition": {
-        "StringEquals": {"s3:x-amz-acl":"bucket-owner-full-control"}
-      }
     }
   ]
 }

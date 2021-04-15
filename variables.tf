@@ -36,12 +36,6 @@ variable "bucket_acl" {
   default = "private"
 }
 
-# variable "attach_policy" {
-#     type = bool
-#     default = false
-#     description = "Set to true if provding custom policy and bucket_policy value will be used as bucket policy"
-# }
-
 variable "sse_kms_key_arn" {
     type = string
     default = ""

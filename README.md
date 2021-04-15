@@ -1,15 +1,26 @@
 # s3-tf-module
 creates s3 bucket with kms key as default sse.
+```
+bucket_name = <bucket name>
+bucket_region = <bucket region>
+```
+if kms keys arn is not provided then a new kms key will created and used.
+```
+sse_kms_key_arn = <arn:aws:kms:::>
+```
 
-provided kms key arn is used , else creates a new kms key for sse
-create with default kms
+add s3 bucket policy --  module  default policy is set to reject  non secure access. To overwrite default  policy create template under policy directory of the root module initiliazing this.
+example provided under example folder
 
-add s3 bucket policy -- default policy to reject non secure access.
+```
+custom_policy = templatefile("${path.module}/policy/custom-bucket-policy.tpl", { bucket_name = <bucket_name> }
+```
 
-can provide custom policy to use instead
+To set life cycle rules:
+```
+    days_to_ia_class = 30
+    days_to_glacier_class = 60
 
-This module creates kms to sse encryption if needed
-
-default life cycle rules
+```
      > 30 to IA (As minimum of 30 days is requred for transistion to IA)
      > 60 to Glacier ( Minimum of 30 days more than IA)
